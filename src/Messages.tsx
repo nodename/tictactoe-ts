@@ -19,7 +19,7 @@ const gameMessageStyles: CSS.Properties = {
 
 export const Message1 = () => {
     const [db, setDb] = useContext(DbContext);
-    const turns = getTurns(db);
+    const turns = getTurns(db as DbType);
     const board = getBoard(turns);
     const turn = getNextTurnIndex(turns, board);
     const player = getNextPlayer(turn);

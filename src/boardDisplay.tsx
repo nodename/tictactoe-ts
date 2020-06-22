@@ -87,7 +87,7 @@ type SqProps = { row: Row, col: Col, classes: any, userPlayer: Player };
 function Sq(props: SqProps) {
     const [ db, setDb ] = useContext(DbContext);
     const { row, col, classes, userPlayer } = props;
-    const turns = getTurns(db);
+    const turns = getTurns(db as DbType);
     const board = getBoard(turns);
     const isThisSqEmpty = getWhoPlayed(board, [row, col]) === null;
     const style = mergeObjects(classes, pulsateStyles, sqTextStyles);
@@ -96,7 +96,7 @@ function Sq(props: SqProps) {
     let handler: (MouseEventHandler<Element>) | undefined;
     if (itsUsersTurn && isThisSqEmpty) {
         handler = () => {
-            console.log(`request ${[row, col]}`);
+           // console.log(`request ${[row, col]}`);
             setDb((db: DbType) => addTurn([row, col], db));
         }
     } else {
@@ -117,7 +117,7 @@ type ComputerProps = { computerPlayer: Player };
 function Computer(props: ComputerProps) {
     const { computerPlayer } = props;
     const [ db, setDb ] = useContext(DbContext);
-    const turns = getTurns(db);
+    const turns = getTurns(db as DbType);
     const board = getBoard(turns);
     const nextTurnIndex = getNextTurnIndex(turns, board);
     const nextPlayer = getNextPlayer(nextTurnIndex);

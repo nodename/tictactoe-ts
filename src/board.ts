@@ -46,7 +46,6 @@ const lineContents =
 
 const getLineWinner = (board: Board, line: Player[]) => {
     const contents = lineContents(board, line);
-    console.log(`lineContents: ${contents}`);
     let lineWinner: Player | null;
     if (isEvery(Player.X, contents)) {
         lineWinner = Player.X;
@@ -61,7 +60,6 @@ const getLineWinner = (board: Board, line: Player[]) => {
 export const getWinner = (board: Board) => {
     for (const line of allLines) {
         const lineWinner = getLineWinner(board, line);
-        console.log(`lineWinner: ${lineWinner}`);
         if (lineWinner !== null) {
             return lineWinner;
         }
@@ -89,7 +87,7 @@ function turnsReducer(aPlayer: Player) {
     };
 }
 
-export function applyTurns(board: Board, nextPlayer: Player, turns: [Coords] | null): Board {
+export function applyTurns(board: Board, nextPlayer: Player, turns: Coords[] | null): Board {
     if (turns === null) {
         return board;
     } else {
@@ -105,7 +103,7 @@ export function printBoard(board: Board) {
     return `[ ${strcat(...map(printRow, [0, 1, 2]))} ]`;
 }
 
-export function getBoard(turns: [Coords]): Board {
+export function getBoard(turns: Coords[]): Board {
     return applyTurns(startingBoard, Player.X, turns);
 }
 
@@ -124,7 +122,7 @@ export function getWhoPlayed(board: Board, sq: Coords): Player | null {
     return sqContents(board, sq);
 }
 
-export function getNextTurnIndex(turns: [Coords], board: Board): number | null {
+export function getNextTurnIndex(turns: Coords[], board: Board): number | null {
     return getIsGameOver(board) ? null : turns.length;
 }
 

@@ -3,7 +3,8 @@
 import React, { createContext, useState } from 'react';
 import { default_db } from './db';
 
-export const DbContext = createContext([default_db, () => {}]);
+const setDb = (() => { }) as any;
+export const DbContext = createContext([default_db, setDb]);
 
 export const DbProvider = (props: any) => {
     const [db, setDb] = useState(default_db);

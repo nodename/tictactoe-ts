@@ -27,7 +27,10 @@ export const isEvery = (pred, list) => {
     };
 
     if (typeof pred !== 'function') {
-        pred = x => x === pred;
+        const val = pred;
+        pred = function (x) {
+            return x === val;
+        };
     }
 
     if (pred(first(list))) {

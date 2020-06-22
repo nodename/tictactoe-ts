@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { DbContext } from './DbContext';
 import { printBoard, getBoard } from './board';
-import { getTurns } from './db';
+import { DbType, getTurns } from './db';
 
 export const DebugComponent = () => {
     const [db] = useContext(DbContext);
-    const turns = getTurns(db);
+    const turns = getTurns(db as DbType);
     const board = getBoard(turns);
 
     return (
