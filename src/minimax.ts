@@ -9,7 +9,7 @@ const minimax0 = (board: Board, player: Player): { move: Coords | null, score: n
         return { move: null, score: 1 };
     }
     if (winner === getOpponent(player)) {
-        return { move: null, score: 0 };
+        return { move: null, score: -1 };
     }
     let emptySquares = filter((sq: Coords) => sqContents(board, sq) === null, allSquares);
     if (isEmpty(emptySquares)) { // tie game

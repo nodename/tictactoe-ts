@@ -121,15 +121,15 @@ function Computer(props: ComputerProps) {
     const board = getBoard(turns);
     const nextTurnIndex = getNextTurnIndex(turns, board);
     const nextPlayer = getNextPlayer(nextTurnIndex);
-    //const computersNextMove = getComputersNextMove(board, nextPlayer) as Coords;
+    const computersNextMove = getComputersNextMove(board, nextPlayer) as Coords;
     //console.log(`next: ${computersNextMove}`);
     const itsComputersTurn: boolean = nextPlayer === computerPlayer;
     if (itsComputersTurn) {
-        setTimeout(() => setDb((db: DbType) => addTurn(getComputersNextMove(board, nextPlayer) as Coords, db)), 3000);
+        setTimeout(() => setDb((db: DbType) => addTurn(computersNextMove, db)), 3000);
     }
     return (
         <div>
-            {`${printBoard(board)} ${getWinner(board)}`}
+            {`${printBoard(board)} ${computersNextMove}`}
         </div>
     );
 }

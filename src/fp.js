@@ -28,9 +28,7 @@ export const isEvery = (pred, list) => {
 
     if (typeof pred !== 'function') {
         const val = pred;
-        pred = function (x) {
-            return x === val;
-        };
+        pred = x => x === val;
     }
 
     if (pred(first(list))) {
