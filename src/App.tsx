@@ -1,11 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useContext } from 'react';
+import React from 'react';
 import { DbProvider } from './DbContext';
-import {
-  getBoard, getIsGameOver,
-  getNextTurnIndex, getNextPlayer, getIsTied, getSqContent,
-printBoard, startingBoard, getWinner } from './board';
-import { isEmpty, some_q } from './fp';
 import { Message1, Message2 } from './Messages';
 import { DebugComponent } from './DebugComponent';
 import { Display } from './boardDisplay';
