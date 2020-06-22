@@ -42,7 +42,7 @@ export const Message2 = () => {
     const message2 = 
          some_q(winner) ? `${winner} WINS!`
             : tied ? "TIE GAME"
-                : "-";
+                : "";
     return (
         <div style={gameMessageStyles}>
             {message2}
