@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useContext } from 'react';
+import { DbProvider } from './DbContext';
+import {
+  getBoard, getIsGameOver,
+  getNextTurnIndex, getNextPlayer, getIsTied, getSqContent,
+printBoard, startingBoard, getWinner } from './board';
+import { isEmpty, some_q } from './fp';
+import { Message1, Message2 } from './Messages';
+import { DebugComponent } from './DebugComponent';
+import { Display } from './boardDisplay';
+import { Player } from './player';
+import CSS from 'csstype';
 import './App.css';
+
+const AppStyles: CSS.Properties = { width: '100%', height: '100%' };
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DbProvider>
+      <div style={AppStyles}>
+        <Message1 />
+        <Display userPlayer={Player.X} />
+        <Message2 />
+        <DebugComponent />
+      </div>
+    </DbProvider>
   );
 }
 
