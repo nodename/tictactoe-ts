@@ -67,29 +67,24 @@ export const strcat = (...strings) => {
     return ''.concat(...strings);
 }
 
+export const range = function* (start = 0, end = Infinity, step = 1) {
+    if (arguments.length === 1) { // a single arg should be taken as end, not start
+        end = start;
+        start = 0;
+    }
+    let value = start;
+    while (value < end) {
+        yield value;
+        value += step;
+    }
+};
 
-// function createEventDispatcher() {
-//     let obj = {
-//         listeners: {},
-//         addEventListener: function (name, fn) {
-//             const L = this.listeners;
-//             L[name] = L[name] || [];
-//             L[name].push(fn);
-//         },
-//         removeEventListener: function (name, fn) {
-//             const L = this.listeners;
-//             var a = L[name];
-//             remove(x => x === fn, a);
-//         },
-//         dispatchEvent: function (name, ...args) {
-//             const L = this.listeners;
-//             var l = L[name];
-//             if (l) {
-//                 for (const val of l) {
-//                     val.apply(val, args);
-//                 }
-//             }
-//         }
-//     };
-//     return obj;
-// }
+export const threadLast = (thing, ...fnAndArgs) => {
+    let currentThing = thing;
+    for (let spec of fnAndArgs) {
+        let f = spec[0];
+        let fArgs = [...spec.slice(1), currentThing];
+        currentThing = f.apply(null, fArgs);
+    }
+    return currentThing;
+};

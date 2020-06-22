@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { some_q } from './fp';
+import { some_q } from '../fp';
 import { DbContext } from './DbContext';
-import { DbType, getTurns, addTurn } from './db';
+import { DbType, getTurns, addTurn } from '../model/db';
 import {
     getBoard, getNextPlayer, getNextTurnIndex,
     getIsGameOver, getIsTied, getWinner
-} from './board';
+} from '../model/board';
 import CSS from 'csstype';
 
 const gameMessageStyles: CSS.Properties = {

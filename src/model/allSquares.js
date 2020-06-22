@@ -1,4 +1,4 @@
-import { range } from "./range";
+import { range } from "../fp";
 
 const allSquaresGen = function* () {
     for (const row of range(0, 3)) {

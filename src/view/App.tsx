@@ -3,7 +3,7 @@ import { DbProvider } from './DbContext';
 import { Message1, Message2 } from './Messages';
 import { DebugComponent } from './DebugComponent';
 import { Display } from './boardDisplay';
-import { Player } from './player';
+import { Player } from '../model/player';
 import CSS from 'csstype';
 import './App.css';
 

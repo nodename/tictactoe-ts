@@ -1,15 +1,15 @@
 import CSS from 'csstype';
 import { useContext } from 'react';
 import { DbContext } from './DbContext';
-import { DbType, getTurns, addTurn } from './db';
+import { DbType, getTurns, addTurn } from '../model/db';
 import {
     getWhoPlayed, getBoard, getComputersNextMove,
     getNextPlayer, getNextTurnIndex, getSqContent,
     Row, Col, Coords, printBoard
-} from './board';
-import { Player, getOpponent } from './player';
+} from '../model/board';
+import { Player, getOpponent } from '../model/player';
 import React, { MouseEventHandler } from 'react';
-import { mergeObjects } from './fp';
+import { mergeObjects } from '../fp';
 
 const fillStyles: CSS.Properties = {
     width: "100%",

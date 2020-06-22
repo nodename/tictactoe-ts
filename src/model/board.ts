@@ -1,6 +1,6 @@
-import { map, reduce, isEvery, some_q, strcat } from "./fp";
+import { map, reduce, isEvery, some_q, strcat } from "../fp";
 import { Player, getOpponent, stringRep } from "./player";
-import { minimax } from './minimax';
+import { minimax } from '../minimax';
 
 const colGen = (col: number) => map((row: number) => [row, col], [0, 1, 2]);
 

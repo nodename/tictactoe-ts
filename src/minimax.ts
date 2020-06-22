@@ -1,6 +1,6 @@
-import { allSquares } from "./allSquares";
-import { getOpponent, Player } from "./player";
-import { Board, Coords, sqContents, getWinner, applyTurn, printBoard } from "./board";
+import { allSquares } from "./model/allSquares";
+import { getOpponent, Player } from "./model/player";
+import { Board, Coords, sqContents, getWinner, applyTurn, printBoard } from "./model/board";
 import { filter, isEmpty } from "./fp";
 
 const minimax0 = (board: Board, player: Player): { move: Coords | null, score: number } => {

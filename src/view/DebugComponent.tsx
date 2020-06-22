@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { DbContext } from './DbContext';
-import { printBoard, getBoard } from './board';
-import { DbType, getTurns } from './db';
+import { printBoard, getBoard } from '../model/board';
+import { DbType, getTurns } from '../model/db';
 
 export const DebugComponent = () => {
     const [db] = useContext(DbContext);
