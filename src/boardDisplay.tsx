@@ -5,7 +5,7 @@ import { DbType, getTurns, addTurn } from './db';
 import {
     getWhoPlayed, getBoard, getComputersNextMove,
     getNextPlayer, getNextTurnIndex, getSqContent,
-    Row, Col, Coords, printBoard, getWinner
+    Row, Col, Coords, printBoard
 } from './board';
 import { Player, getOpponent } from './player';
 import React, { MouseEventHandler } from 'react';
@@ -96,7 +96,6 @@ function Sq(props: SqProps) {
     let handler: (MouseEventHandler<Element>) | undefined;
     if (itsUsersTurn && isThisSqEmpty) {
         handler = () => {
-           // console.log(`request ${[row, col]}`);
             setDb((db: DbType) => addTurn([row, col], db));
         }
     } else {
@@ -122,13 +121,12 @@ function Computer(props: ComputerProps) {
     const nextTurnIndex = getNextTurnIndex(turns, board);
     const nextPlayer = getNextPlayer(nextTurnIndex);
     const computersNextMove = getComputersNextMove(board, nextPlayer) as Coords;
-    //console.log(`next: ${computersNextMove}`);
     const itsComputersTurn: boolean = nextPlayer === computerPlayer;
     if (itsComputersTurn) {
         setTimeout(() => setDb((db: DbType) => addTurn(computersNextMove, db)), 3000);
     }
     return (
-        <div>
+        <div style={displayNone}>
             {`${printBoard(board)} ${computersNextMove}`}
         </div>
     );
