@@ -1,7 +1,7 @@
 import CSS from 'csstype';
 import { useContext } from 'react';
 import { DbContext } from './DbContext';
-import { DbType, getTurns, addTurn } from '../model/db';
+import { DbType, getTurns } from '../model/db';
 import {
     getWhoPlayed, getBoard, getComputersNextMove,
     getNextPlayer, getNextTurnIndex, getSqContent,
@@ -85,19 +85,18 @@ const sqTextStyles: CSS.Properties = {
 type SqProps = { row: Row, col: Col, classes: any, userPlayer: Player };
 
 function Sq(props: SqProps) {
-    const [ db, setDb ] = useContext(DbContext);
+    const [ db, playSquare ] = useContext(DbContext);
     const { row, col, classes, userPlayer } = props;
+    const style = mergeObjects(classes, pulsateStyles, sqTextStyles);
+
     const turns = getTurns(db as DbType);
     const board = getBoard(turns);
     const isThisSqEmpty = getWhoPlayed(board, [row, col]) === null;
-    const style = mergeObjects(classes, pulsateStyles, sqTextStyles);
     const nextTurnIndex = getNextTurnIndex(turns, board);
     const itsUsersTurn = getNextPlayer(nextTurnIndex) === userPlayer;
     let handler: (MouseEventHandler<Element>) | undefined;
     if (itsUsersTurn && isThisSqEmpty) {
-        handler = () => {
-            setDb((db: DbType) => addTurn([row, col], db));
-        }
+        handler = playSquare([row, col]);
     } else {
         handler = undefined;
     }
@@ -115,7 +114,7 @@ type ComputerProps = { computerPlayer: Player };
 
 function Computer(props: ComputerProps) {
     const { computerPlayer } = props;
-    const [ db, setDb ] = useContext(DbContext);
+    const [ db, playSquare ] = useContext(DbContext);
     const turns = getTurns(db as DbType);
     const board = getBoard(turns);
     const nextTurnIndex = getNextTurnIndex(turns, board);
@@ -123,11 +122,11 @@ function Computer(props: ComputerProps) {
     const computersNextMove = getComputersNextMove(board, nextPlayer) as Coords;
     const itsComputersTurn: boolean = nextPlayer === computerPlayer;
     if (itsComputersTurn) {
-        setTimeout(() => setDb((db: DbType) => addTurn(computersNextMove, db)), 3000);
+        setTimeout(playSquare(computersNextMove), 2000);
     }
     return (
         <div style={displayNone}>
-            {`${printBoard(board)} ${computersNextMove}`}
+            {`${printBoard(board)}`}
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { some_q } from '../fp';
 import { DbContext } from './DbContext';
-import { DbType, getTurns, addTurn } from '../model/db';
+import { DbType, getTurns } from '../model/db';
 import {
     getBoard, getNextPlayer, getNextTurnIndex,
     getIsGameOver, getIsTied, getWinner
@@ -18,7 +18,7 @@ const gameMessageStyles: CSS.Properties = {
 }
 
 export const Message1 = () => {
-    const [db, setDb] = useContext(DbContext);
+    const [db] = useContext(DbContext);
     const turns = getTurns(db as DbType);
     const board = getBoard(turns);
     const turn = getNextTurnIndex(turns, board);
@@ -26,8 +26,7 @@ export const Message1 = () => {
     const gameOver = getIsGameOver(board);
     const message1 = gameOver ? "GAME OVER" : `turn ${turn} player ${player}`;
     return (
-        <div style={gameMessageStyles}
-            onClick={() => setDb((db: DbType) => addTurn([2, 2], db))}>
+        <div style={gameMessageStyles}>
             {message1}
         </div>
     );
