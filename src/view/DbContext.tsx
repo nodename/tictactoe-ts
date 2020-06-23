@@ -1,11 +1,11 @@
 // https://upmostly.com/tutorials/how-to-use-the-usecontext-hook-in-react
 
 import React, { createContext, useState } from 'react';
-import { default_db } from '../model/db';
+import { DbType, default_db } from '../model/db';
 
-const setDb = (() => { }) as any;
-// These are dummy parameters, which will be replaced by the DbProvider below:
-export const DbContext = createContext([default_db, setDb]);
+type DbContextType = [DbType, any];
+const dummyDbContextValue: DbContextType = [default_db, () => { }];
+export const DbContext = createContext<DbContextType>(dummyDbContextValue);
 
 export const DbProvider = (props: any) => {
     const [db, setDb] = useState(default_db);
