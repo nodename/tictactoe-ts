@@ -82,7 +82,7 @@ const sqTextStyles: CSS.Properties = {
     lineHeight: "100%"
 };
 
-type SqProps = { row: Row, col: Col, classes: any, userPlayer: Player };
+interface SqProps { row: Row, col: Col, classes: any, userPlayer: Player };
 
 function Sq(props: SqProps) {
     const [ db, playSquare ] = useContext(DbContext);
@@ -110,7 +110,7 @@ function Sq(props: SqProps) {
     );
 }
 
-type ComputerProps = { computerPlayer: Player };
+interface ComputerProps { computerPlayer: Player };
 
 function Computer(props: ComputerProps) {
     const { computerPlayer } = props;
@@ -131,7 +131,7 @@ function Computer(props: ComputerProps) {
     );
 }
 
-type DisplayProps = { userPlayer: Player };
+interface DisplayProps { userPlayer: Player };
 
 export function Display(props: DisplayProps) {
     const { userPlayer } = props;
