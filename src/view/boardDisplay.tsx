@@ -111,7 +111,9 @@ function Sq(props: SqProps) {
 }
 
 interface ComputerProps { computerPlayer: Player };
-
+// an invisible component that plays the AI's move
+// when it's the computer's turn to play
+// (after a short delay to "think about it")
 function Computer(props: ComputerProps) {
     const { computerPlayer } = props;
     const [ db, playSquare ] = useContext(DbContext);
